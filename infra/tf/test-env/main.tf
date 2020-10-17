@@ -4,7 +4,7 @@ provider "aws" {
 
 module "dashboard_website" {
   source = "../modules/dashboard_website_core"
-  website_name = random_id.name.hex
+  domain_name = random_id.name.hex
   r53_zone_name = random_id.name.hex
   subdomain = var.subdomain
 }

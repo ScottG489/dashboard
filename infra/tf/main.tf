@@ -13,7 +13,7 @@ terraform {
 
 module "dashboard_website" {
   source = "./modules/dashboard_website_core"
-  website_name = var.domain_name
+  domain_name = var.domain_name
   subdomain = var.subdomain
   r53_zone_name = var.domain_name
 }
