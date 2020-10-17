@@ -82,8 +82,6 @@ ui_deploy() {
 
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
-  # TODO: REMOVE, FOR DEBUGGING
-  terraform show --json | jq
   readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.outputs.bucket.value')
   [[ -n $BUCKET_NAME ]]
 
