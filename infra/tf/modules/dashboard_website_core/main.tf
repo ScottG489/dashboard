@@ -3,7 +3,6 @@ module "helpers_s3_website" {
   version = "0.0.7"
   name = var.website_name
   subdomain = var.subdomain
-//  subdomain = "dash"
 }
 
 resource "aws_route53_zone" "r53_zone" {
