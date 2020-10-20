@@ -11,7 +11,7 @@ let GitHubBuilds = () => {
     }, []);
 
     return (
-        <div>
+        <div className="card-body">
             {isLoading ? loading() : ''}
             {displayBadges()}
         </div>

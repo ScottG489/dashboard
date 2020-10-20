@@ -7,7 +7,7 @@ let App = () => {
     return (
         <div className="App container">
             <div className="row justify-content-center">
-                <div className="col-auto">
+                <div className="col-auto card">
                     <GitHubBuilds />
                 </div>
             </div>
