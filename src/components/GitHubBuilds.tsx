@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import {RepoBadgeInfo} from "../types";
+import './GitHubBuilds.css'
 
 let GitHubBuilds = () => {
-    const [badgeUrls, setBadgeUrls] = useState<string[]>([])
+    const [repoBadgeInfos, setBadgeUrls] = useState<RepoBadgeInfo[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -16,10 +18,17 @@ let GitHubBuilds = () => {
     )
 
     function displayBadges() {
-        return badgeUrls.map(badgeUrl => {
+        return repoBadgeInfos.map(repoBadgeInfo => {
             return (
-                <div>
-                    <img src={badgeUrl} alt="github repo badge"/>
+                <div key={repoBadgeInfo.repoName} className={"row"}>
+                    <div className={"col"}>
+                        <h4>{repoBadgeInfo.repoName}</h4>
+                    </div>
+                    <div className={"col-auto my-auto"}>
+                        <a href={repoBadgeInfo.repoUrl}>
+                            <img src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
+                        </a>
+                    </div>
                 </div>
             )
         })
@@ -30,8 +39,8 @@ let GitHubBuilds = () => {
             const response = await fetch(
                 'http://api.simple-ci.com/build?image=scottg489/gh-repo-build-status-job'
             )
-            const badges: string[] = await response.json()
-            setBadgeUrls(badges)
+            const badgeInfo: RepoBadgeInfo[] = await response.json()
+            setBadgeUrls(badgeInfo)
             setIsLoading(false)
         } catch (e) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
