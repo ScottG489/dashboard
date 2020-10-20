@@ -12,7 +12,7 @@ let GitHubBuilds = () => {
 
     return (
         <div>
-            {isLoading ? 'Loading badges...' : ''}
+            {isLoading ? loading() : ''}
             {displayBadges()}
         </div>
     )
@@ -45,6 +45,14 @@ let GitHubBuilds = () => {
         } catch (e) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
+    }
+
+    function loading() {
+        return (
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        )
     }
 };
 
