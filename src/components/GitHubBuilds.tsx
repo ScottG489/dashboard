@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 
 let GitHubBuilds = () => {
     const [badgeUrls, setBadgeUrls] = useState<string[]>([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         fetchDiffInfo()
@@ -9,6 +10,7 @@ let GitHubBuilds = () => {
 
     return (
         <div>
+            {isLoading ? 'Loading badges...' : ''}
             {displayBadges()}
         </div>
     )
@@ -30,6 +32,7 @@ let GitHubBuilds = () => {
             )
             const badges: string[] = await response.json()
             setBadgeUrls(badges)
+            setIsLoading(false)
         } catch (e) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
