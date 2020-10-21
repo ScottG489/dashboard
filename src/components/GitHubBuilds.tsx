@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {RepoBadgeInfo} from "../types";
-import './GitHubBuilds.css'
 
 let GitHubBuilds = () => {
     const [repoBadgeInfos, setBadgeUrls] = useState<RepoBadgeInfo[]>([])
@@ -13,26 +12,33 @@ let GitHubBuilds = () => {
     return (
         <div className="card-body">
             <h1 className="card-title text-center">Repo Build Status</h1>
-            <div className="text-center">
-                {isLoading ? loading() : ''}
-            </div>
-            {displayBadges()}
+            <table className="table table-striped table-hover">
+                <tbody>
+                {isLoading ? loading() : displayBadges()}
+                </tbody>
+            </table>
         </div>
     )
 
     function displayBadges() {
         return repoBadgeInfos.map(repoBadgeInfo => {
             return (
-                <div key={repoBadgeInfo.repoName} className={"row"}>
-                    <div className={"col"}>
-                        <h4>{repoBadgeInfo.repoName}</h4>
-                    </div>
-                    <div className={"col-auto my-auto"}>
-                        <a href={repoBadgeInfo.repoUrl}>
-                            <img src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
+                <tr key={repoBadgeInfo.repoName}>
+                    <td className="p-0">
+                        <a href={repoBadgeInfo.repoUrl} className="d-flex p-3 text-decoration-none">
+                            <div>
+                                <strong>{repoBadgeInfo.repoName}</strong>
+                            </div>
                         </a>
-                    </div>
-                </div>
+                    </td>
+                    <td className="p-0">
+                        <a href={repoBadgeInfo.repoUrl} className="d-flex p-3">
+                            <div>
+                                <img src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
             )
         })
     }
@@ -52,8 +58,10 @@ let GitHubBuilds = () => {
 
     function loading() {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div className="text-center">
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
