@@ -12,9 +12,10 @@ let GitHubBuilds = () => {
     return (
         <div className="card-body">
             <h1 className="card-title text-center">Repo Build Status</h1>
+            {isLoading ? loading() : ''}
             <table className="table table-striped table-hover">
                 <tbody>
-                {isLoading ? loading() : displayBadges()}
+                {displayBadges()}
                 </tbody>
             </table>
         </div>
