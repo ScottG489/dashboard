@@ -31,10 +31,10 @@ let Mint = () => {
 
             <div className="card-body">
                 <div className="tab-content" id="myTabContent">
-                    <div className="tab-pane fade show active" id="mint-credit-score" role="tabpanel"
+                    <div className="tab-pane fade show active text-center" id="mint-credit-score" role="tabpanel"
                          aria-labelledby="mint-credit-score-tab">
                         {isLoading ? loading() : ''}
-                        {creditScore}
+                        <span className="lead font-weight-bold">{creditScore}</span>
                     </div>
                     <div className="tab-pane fade" id="mint-credit-score-creds" role="tabpanel"
                          aria-labelledby="mint-credit-score-creds-tab">
@@ -47,6 +47,7 @@ let Mint = () => {
                             <div className="form-group">
                                 <div className="form-group">
                                     <input type="password" className="form-control" id="mint-credit"
+                                           placeholder="Enter credentials"
                                            value={credentials}
                                            onChange={(event) => {
                                                setCredentials(event.target.value)
