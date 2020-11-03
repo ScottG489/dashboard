@@ -38,7 +38,12 @@ let Mint = () => {
                     </div>
                     <div className="tab-pane fade" id="mint-credit-score-creds" role="tabpanel"
                          aria-labelledby="mint-credit-score-creds-tab">
-                        <form>
+                        <form
+                            onSubmit={async (event: React.FormEvent) => {
+                                event.preventDefault()
+                                await fetchCreditScore()
+                            }}
+                        >
                             <div className="form-group">
                                 <div className="form-group">
                                     <input type="password" className="form-control" id="mint-credit"
