@@ -3,7 +3,7 @@ import {RepoBadgeInfo} from "../types";
 
 let GitHubBuilds = () => {
     const [repoBadgeInfos, setBadgeUrls] = useState<RepoBadgeInfo[]>([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         fetchGitHubBuildStatuses()
@@ -45,6 +45,7 @@ let GitHubBuilds = () => {
     }
 
     async function fetchGitHubBuildStatuses() {
+        setIsLoading(true)
         console.log('Fetching GitHub build statuses...')
         try {
             const response = await fetch(
@@ -52,10 +53,10 @@ let GitHubBuilds = () => {
             )
             const badgeInfo: RepoBadgeInfo[] = await response.json()
             setBadgeUrls(badgeInfo)
-            setIsLoading(false)
         } catch (e) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
+        setIsLoading(false)
     }
 
     function loading() {
