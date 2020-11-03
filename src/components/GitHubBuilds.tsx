@@ -10,14 +10,29 @@ let GitHubBuilds = () => {
     }, []);
 
     return (
-        <div className="card-body">
-            <h1 className="card-title text-center">Repo Build Status</h1>
-            {isLoading ? loading() : ''}
-            <table className="table table-striped table-hover">
-                <tbody>
-                {displayBadges()}
-                </tbody>
-            </table>
+        <div>
+            <div className="card-header">
+                <h2 className="card-title text-center">Repo Build Status</h2>
+            </div>
+            <div className="card-body">
+                {isLoading ? loading() : ''}
+                <table className="table table-striped table-hover">
+                    <tbody>
+                    {displayBadges()}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="card-footer text-muted">
+                <form
+                    onSubmit={async (event: React.FormEvent) => {
+                        event.preventDefault()
+                        await fetchGitHubBuildStatuses()
+                    }}
+                >
+                    <button className="form-control btn-primary">Refresh</button>
+                </form>
+            </div>
         </div>
     )
 
