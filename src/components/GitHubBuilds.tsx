@@ -6,7 +6,7 @@ let GitHubBuilds = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        fetchDiffInfo()
+        fetchGitHubBuildStatuses()
     }, []);
 
     return (
@@ -44,7 +44,8 @@ let GitHubBuilds = () => {
         })
     }
 
-    async function fetchDiffInfo() {
+    async function fetchGitHubBuildStatuses() {
+        console.log('Fetching GitHub build statuses...')
         try {
             const response = await fetch(
                 'http://api.simple-ci.com/build?image=scottg489/gh-repo-build-status-job'
