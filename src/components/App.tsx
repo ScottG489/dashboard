@@ -10,8 +10,8 @@ import Mint from "./Mint";
 let App = () => {
     return (
         <div className="App container">
-            <div className="row justify-content-center">
-                <div className="col-auto card">
+            <div className="card-columns justify-content-center">
+                <div className="card">
                     <GitHubBuilds />
                 </div>
                 <div className="card">
