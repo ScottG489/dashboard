@@ -17,7 +17,7 @@ let GitHubBuilds = () => {
                 <h2 className="card-title text-center">Repo Build Status</h2>
             </div>
             <div className="card-body">
-                {isLoading ? loading() : displayBadgeTable()}
+                {displayBadgeTable()}
             </div>
 
             <div className="card-footer text-muted">
@@ -27,7 +27,7 @@ let GitHubBuilds = () => {
                         await fetchGitHubBuildStatuses()
                     }}
                 >
-                    <button className="form-control btn-primary">Refresh</button>
+                    <button className="form-control btn-primary">{isLoading ? loading() : 'Refresh'}</button>
                 </form>
             </div>
         </div>
@@ -82,7 +82,7 @@ let GitHubBuilds = () => {
     function loading() {
         return (
             <div className="text-center">
-                <div className="spinner-border" role="status">
+                <div className="spinner-border spinner-border-sm" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>
