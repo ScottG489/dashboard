@@ -69,7 +69,7 @@ let GitHubBuilds = () => {
         console.log('Fetching GitHub build statuses...')
         try {
             const response = await fetch(
-                'http://api.simple-ci.com/build?image=scottg489/gh-repo-build-status-job'
+                'http://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest'
             )
             const badgeInfo: RepoBadgeInfo[] = await response.json()
             setBadgeUrls(badgeInfo)
