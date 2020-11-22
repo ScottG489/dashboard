@@ -15,12 +15,7 @@ let GitHubBuilds = () => {
                 <h2 className="card-title text-center">Repo Build Status</h2>
             </div>
             <div className="card-body">
-                {isLoading ? loading() : ''}
-                <table className="table table-striped table-hover">
-                    <tbody>
-                    {displayBadges()}
-                    </tbody>
-                </table>
+                {isLoading ? loading() : displayBadgeTable()}
             </div>
 
             <div className="card-footer text-muted">
@@ -35,6 +30,14 @@ let GitHubBuilds = () => {
             </div>
         </div>
     )
+
+    function displayBadgeTable() {
+        return <table className="table table-striped table-hover">
+            <tbody>
+                {displayBadges()}
+            </tbody>
+        </table>;
+    }
 
     function displayBadges() {
         return repoBadgeInfos.map(repoBadgeInfo => {
