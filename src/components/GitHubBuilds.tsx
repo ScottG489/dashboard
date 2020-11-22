@@ -55,7 +55,7 @@ let GitHubBuilds = () => {
                     <td className="p-0">
                         <a href={repoBadgeInfo.repoUrl} className="d-flex p-3">
                             <div>
-                                <img src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
+                                <img key={Date.now()} src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
                             </div>
                         </a>
                     </td>
