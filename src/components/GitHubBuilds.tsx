@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {RepoBadgeInfo} from "../types";
+import {RepoBuildInfo} from "../types";
 
 let GitHubBuilds = () => {
-    const [repoBadgeInfos, setBadgeUrls] = useState<RepoBadgeInfo[]>([])
+    const [repoBuildInfos, setBuildInfos] = useState<RepoBuildInfo[]>([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -42,20 +42,21 @@ let GitHubBuilds = () => {
     }
 
     function displayBadges() {
-        return repoBadgeInfos.map(repoBadgeInfo => {
+        return repoBuildInfos.map(repoBuildInfo => {
             return (
-                <tr key={repoBadgeInfo.repoName}>
+                <tr key={repoBuildInfo.repoName}>
                     <td className="p-0">
-                        <a href={repoBadgeInfo.repoUrl} className="d-flex p-3 text-decoration-none">
+                        <a href={repoBuildInfo.repoUrl} className="d-flex p-3 text-decoration-none">
                             <div>
-                                <strong>{repoBadgeInfo.repoName}</strong>
+                                <strong>{repoBuildInfo.repoName}</strong>
                             </div>
                         </a>
                     </td>
                     <td className="p-0">
-                        <a href={repoBadgeInfo.repoUrl} className="d-flex p-3">
+                        <a href={repoBuildInfo.repoUrl} className="d-flex p-3">
                             <div>
-                                <img key={Date.now()} src={repoBadgeInfo.badgeUrl} alt="github repo badge"/>
+                                <img src={repoBuildInfo.badgeUrl + "?" + repoBuildInfo.workflowRunConclusion}
+                                     alt="github repo badge"/>
                             </div>
                         </a>
                     </td>
@@ -71,8 +72,8 @@ let GitHubBuilds = () => {
             const response = await fetch(
                 'http://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest'
             )
-            const badgeInfo: RepoBadgeInfo[] = await response.json()
-            setBadgeUrls(badgeInfo)
+            const buildInfo: RepoBuildInfo[] = await response.json()
+            setBuildInfos(buildInfo)
         } catch (e) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
