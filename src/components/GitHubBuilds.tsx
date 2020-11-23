@@ -7,7 +7,7 @@ let GitHubBuilds = () => {
 
     useEffect(() => {
         fetchGitHubBuildStatuses()
-        const interval = setInterval(fetchGitHubBuildStatuses, 60000);
+        const interval = setInterval(fetchGitHubBuildStatuses, 1800000);
         return () => clearInterval(interval);
     }, []);
 
