@@ -85,7 +85,7 @@ ui_deploy() {
   readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.outputs.bucket.value')
   [[ -n $BUCKET_NAME ]]
 
-  readonly REACT_APP_BACKEND_SERVER_BASE_URL="http://api.simple-ci.com"
+  readonly REACT_APP_BACKEND_SERVER_BASE_URL="http://api.conjob.io"
   export REACT_APP_BACKEND_SERVER_BASE_URL
 
   cd "$ROOT_DIR"
