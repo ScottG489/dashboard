@@ -82,7 +82,7 @@ let Mint = () => {
         }
         try {
             const response = await fetch(
-                'http://api.conjob.io/job/run?image=scottg489/mint-api-query-job:latest',
+                'https://api.conjob.io/job/run?image=scottg489/mint-api-query-job:latest',
                 {
                     method: 'POST',
                     body: JSON.stringify(body),

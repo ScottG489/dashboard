@@ -70,7 +70,7 @@ let GitHubBuilds = () => {
         console.log('Fetching GitHub build statuses...')
         try {
             const response = await fetch(
-                'http://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&pull=absent'
+                'https://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&pull=absent'
             )
             const buildInfo: RepoBuildInfo[] = await response.json()
             setBuildInfos(buildInfo)
