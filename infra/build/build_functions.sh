@@ -12,10 +12,10 @@ setup_credentials() {
   readonly ID_RSA_CONTENTS=$(echo -n $1 | jq -r .ID_RSA | base64 --decode)
   readonly AWS_CREDENTIALS_CONTENTS=$(echo -n $1 | jq -r .AWS_CREDENTIALS | base64 --decode)
 
-  printf -- "$ID_RSA_CONTENTS" >/root/.ssh/id_rsa
-  printf -- "$AWS_CREDENTIALS_CONTENTS" >/root/.aws/credentials
+  printf -- "$ID_RSA_CONTENTS" >/home/build-user/.ssh/id_rsa
+  printf -- "$AWS_CREDENTIALS_CONTENTS" >/home/build-user/.aws/credentials
 
-  chmod 400 /root/.ssh/id_rsa
+  chmod 400 /home/build-user/.ssh/id_rsa
 }
 
 build_application() {
@@ -23,6 +23,9 @@ build_application() {
   readonly ROOT_DIR=$(get_git_root_dir)
   cd "$ROOT_DIR"
 
+  set +x
+  . "$NVM_DIR/nvm.sh"
+  set -x
   npm ci
 
   # Build and package front-end
