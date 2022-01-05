@@ -1,7 +1,7 @@
 # dashboard
 ![CI](https://github.com/ScottG489/dashboard/workflows/CI/badge.svg)
 
-Pick a stance on a topic and be matched up with someone with a differing viewpoint
+My personal dashboard.
 
 ## Development
 Here is an example of developing the build in conjunction with the application locally.
