@@ -97,5 +97,5 @@ ui_deploy() {
   npm run build
   unset CI
 
-  aws s3 sync build/ s3://"$BUCKET_NAME"
+  aws s3 sync --delete build/ s3://"$BUCKET_NAME"
 }
