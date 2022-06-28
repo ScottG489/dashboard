@@ -26,11 +26,13 @@ build_application() {
   set +x
   . "$NVM_DIR/nvm.sh"
   set -x
-  npm ci
 
   # Build and package front-end
   export CI=true
+  npm ci
+
   npm run test
+  npm run build
   unset CI
 }
 
@@ -92,10 +94,6 @@ ui_deploy() {
   export REACT_APP_BACKEND_SERVER_BASE_URL
 
   cd "$ROOT_DIR"
-
-  export CI=true
-  npm run build
-  unset CI
 
   aws s3 sync --delete build/ s3://"$BUCKET_NAME"
 }
