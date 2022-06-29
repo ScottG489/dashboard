@@ -90,7 +90,7 @@ let Mint = () => {
             )
             const creditScore = await response.json()
             setCreditScore(creditScore)
-        } catch (e) {
+        } catch (e: any) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
         setIsLoading(false)

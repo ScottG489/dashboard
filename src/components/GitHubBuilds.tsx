@@ -74,7 +74,7 @@ let GitHubBuilds = () => {
             )
             const buildInfo: RepoBuildInfo[] = await response.json()
             setBuildInfos(buildInfo)
-        } catch (e) {
+        } catch (e: any) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
         }
         setIsLoading(false)
