@@ -4,7 +4,7 @@ resource "aws_route53_zone" "r53_zone" {
 
 module "helpers_s3_website_subdomain" {
   source = "ScottG489/helpers/aws//modules/s3_website_subdomain"
-  version = "1.3.0"
+  version = "1.3.1"
   bucket_name = "${var.subdomain}.${var.domain_name}"
   subdomain = var.subdomain
   route53_zone_id = aws_route53_zone.r53_zone.id
