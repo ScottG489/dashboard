@@ -37,6 +37,8 @@ build_application() {
   export CI=true
   npm ci
 
+  npm audit --omit=dev
+
   npm run test
   npm run build
   unset CI
