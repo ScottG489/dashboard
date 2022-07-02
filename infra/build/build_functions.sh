@@ -27,6 +27,7 @@ build_application() {
   . "$NVM_DIR/nvm.sh"
   set -x
 
+  [[ $(terraform version -json | jq --raw-output '.terraform_outdated') == "false" ]]
   [[ $(hadolint --version | awk '{print $4}') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=hadolint' | jq --raw-output '.items[].stable_versions[0]') ]]
 
   hadolint --failure-threshold warning infra/build/Dockerfile
