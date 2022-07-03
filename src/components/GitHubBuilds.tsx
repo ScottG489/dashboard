@@ -24,19 +24,17 @@ let GitHubBuilds = () => {
     }, []);
 
     return (
-        <div>
-            <Card>
-                <CardHeader title="Repo Build Status"/>
-                <CardContent>
-                    {displayBadgeTable()}
-                </CardContent>
-                <CardActions>
-                    <Button variant="contained" onClick={fetchGitHubBuildStatuses}>
-                        {isLoading ? loading() : 'Refresh'}
-                    </Button>
-                </CardActions>
-            </Card>
-        </div>
+        <Card>
+            <CardHeader title="Repo Build Status"/>
+            <CardContent>
+                {displayBadgeTable()}
+            </CardContent>
+            <CardActions>
+                <Button variant="contained" onClick={fetchGitHubBuildStatuses}>
+                    {isLoading ? loading() : 'Refresh'}
+                </Button>
+            </CardActions>
+        </Card>
     )
 
     function displayBadgeTable() {
