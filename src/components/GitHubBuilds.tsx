@@ -10,6 +10,7 @@ import {
     ListItem,
     ListItemText,
     Stack,
+    Link,
 } from "@mui/material";
 
 let GitHubBuilds = () => {
@@ -45,7 +46,7 @@ let GitHubBuilds = () => {
     function displayBadges() {
         return repoBuildInfos.map(repoBuildInfo => {
             return (
-                <a href={repoBuildInfo.repoUrl} key={repoBuildInfo.repoName}>
+                <Link href={repoBuildInfo.repoUrl} key={repoBuildInfo.repoName}>
                     <Stack direction="row"
                            justifyContent="space-between"
                            alignItems="center"
@@ -58,7 +59,7 @@ let GitHubBuilds = () => {
                                  alt="github repo badge"/>
                         </ListItem>
                     </Stack>
-                </a>
+                </Link>
             )
         })
     }
