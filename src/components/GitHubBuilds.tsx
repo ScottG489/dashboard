@@ -1,5 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import {RepoBuildInfo} from "../types";
+import Button from '@mui/material/Button';
+import {
+    Card,
+    CardActions,
+    CardHeader,
+    CardContent,
+    List,
+    ListItem,
+    ListItemText,
+    Stack,
+} from "@mui/material";
 
 let GitHubBuilds = () => {
     const [repoBuildInfos, setBuildInfos] = useState<RepoBuildInfo[]>([])
@@ -13,54 +24,41 @@ let GitHubBuilds = () => {
 
     return (
         <div>
-            <div className="card-header">
-                <h2 className="card-title text-center">Repo Build Status</h2>
-            </div>
-            <div className="card-body">
-                {displayBadgeTable()}
-            </div>
-
-            <div className="card-footer text-muted">
-                <form
-                    onSubmit={async (event: React.FormEvent) => {
-                        event.preventDefault()
-                        await fetchGitHubBuildStatuses()
-                    }}
-                >
-                    <button className="form-control btn-primary">{isLoading ? loading() : 'Refresh'}</button>
-                </form>
-            </div>
+            <Card>
+                <CardHeader title="Repo Build Status"/>
+                <CardContent>
+                    {displayBadgeTable()}
+                </CardContent>
+                <CardActions>
+                    <Button variant="contained" onClick={fetchGitHubBuildStatuses}>
+                        {isLoading ? loading() : 'Refresh'}
+                    </Button>
+                </CardActions>
+            </Card>
         </div>
     )
 
     function displayBadgeTable() {
-        return <table className="table table-striped table-hover">
-            <tbody>
-                {displayBadges()}
-            </tbody>
-        </table>;
+        return <List>{displayBadges()}</List>;
     }
 
     function displayBadges() {
         return repoBuildInfos.map(repoBuildInfo => {
             return (
-                <tr key={repoBuildInfo.repoName}>
-                    <td className="p-0">
-                        <a href={repoBuildInfo.repoUrl} className="d-flex p-3 text-decoration-none">
-                            <div>
-                                <strong>{repoBuildInfo.repoName}</strong>
-                            </div>
-                        </a>
-                    </td>
-                    <td className="p-0">
-                        <a href={repoBuildInfo.repoUrl} className="d-flex p-3">
-                            <div>
-                                <img src={repoBuildInfo.badgeUrl + "?" + repoBuildInfo.workflowRunConclusion}
-                                     alt="github repo badge"/>
-                            </div>
-                        </a>
-                    </td>
-                </tr>
+                <a href={repoBuildInfo.repoUrl} key={repoBuildInfo.repoName}>
+                    <Stack direction="row"
+                           justifyContent="space-between"
+                           alignItems="center"
+                           spacing={2} key={repoBuildInfo.repoName}>
+                        <ListItem divider>
+                            <ListItemText>
+                                {repoBuildInfo.repoName}
+                            </ListItemText>
+                            <img src={repoBuildInfo.badgeUrl + "?" + repoBuildInfo.workflowRunConclusion}
+                                 alt="github repo badge"/>
+                        </ListItem>
+                    </Stack>
+                </a>
             )
         })
     }
