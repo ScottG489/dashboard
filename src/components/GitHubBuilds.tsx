@@ -32,7 +32,7 @@ let GitHubBuilds = () => {
                 {displayBadgeTable()}
             </CardContent>
             <CardActions>
-                <Button variant="contained" onClick={fetchGitHubBuildStatuses}>
+                <Button variant="contained" onClick={fetchGitHubBuildStatuses} style={{width: '100%'}}>
                     {isLoading ? loading() : 'Refresh'}
                 </Button>
             </CardActions>
