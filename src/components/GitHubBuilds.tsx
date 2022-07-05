@@ -10,7 +10,7 @@ import {
     ListItem,
     ListItemText,
     Stack,
-    Link,
+    Link, Typography,
 } from "@mui/material";
 
 let GitHubBuilds = () => {
@@ -25,7 +25,9 @@ let GitHubBuilds = () => {
 
     return (
         <Card>
-            <CardHeader title="Repo Build Status"/>
+            <CardHeader
+                title={<Typography variant="h4">Repo Build Status</Typography>}
+                style={{textAlign: 'center'}}/>
             <CardContent>
                 {displayBadgeTable()}
             </CardContent>
