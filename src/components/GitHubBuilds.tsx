@@ -12,6 +12,17 @@ import {
     Stack,
     Link, Typography,
 } from "@mui/material";
+import {keyframes} from "@emotion/react";
+import {Refresh} from '@mui/icons-material';
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 let GitHubBuilds = () => {
     const [repoBuildInfos, setBuildInfos] = useState<RepoBuildInfo[]>([])
@@ -81,11 +92,9 @@ let GitHubBuilds = () => {
 
     function loading() {
         return (
-            <div className="text-center">
-                <div className="spinner-border spinner-border-sm" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
+            <Refresh sx={{
+                animation: `${spin} 1s infinite linear`
+            }}/>
         )
     }
 };
