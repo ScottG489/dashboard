@@ -10,7 +10,7 @@ import {
     ListItem,
     ListItemText,
     Stack,
-    Link, Typography,
+    Link, Typography, Box,
 } from "@mui/material";
 import {keyframes} from "@emotion/react";
 import {Refresh} from '@mui/icons-material';
@@ -57,14 +57,16 @@ let GitHubBuilds = () => {
     function displayBadges() {
         return repoBuildInfos.map(repoBuildInfo => {
             return (
-                <Link href={repoBuildInfo.repoUrl} key={repoBuildInfo.repoName}>
+                <Link href={repoBuildInfo.repoUrl} key={repoBuildInfo.repoName} underline="hover">
                     <Stack direction="row"
                            justifyContent="space-between"
                            alignItems="center"
                            spacing={2} key={repoBuildInfo.repoName}>
                         <ListItem divider>
                             <ListItemText>
-                                {repoBuildInfo.repoName}
+                                <Box sx={{fontWeight: 'bold'}}>
+                                    {repoBuildInfo.repoName}
+                                </Box>
                             </ListItemText>
                             <img src={repoBuildInfo.badgeUrl + "?" + repoBuildInfo.workflowRunConclusion}
                                  alt="github repo badge"/>
