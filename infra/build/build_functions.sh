@@ -29,7 +29,9 @@ build_application() {
 
   [[ $(terraform version -json | jq --raw-output '.terraform_outdated') == "false" ]]
   [[ $(node -v | sed 's/^v//') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=nodejs' | jq --raw-output '.items[].stable_versions[0]') ]]
-  [[ $(hadolint --version | awk '{print $4}') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=hadolint' | jq --raw-output '.items[].stable_versions[0]') ]]
+  # TODO: release-monitoring doesn't use the github as the backend to determine versions and we install from github
+  # TODO:   We should check and install from the same place.
+#  [[ $(hadolint --version | awk '{print $4}') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=hadolint' | jq --raw-output '.items[].stable_versions[0]') ]]
 
   hadolint --failure-threshold warning infra/build/Dockerfile
 
