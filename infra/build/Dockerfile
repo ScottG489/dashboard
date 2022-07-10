@@ -14,7 +14,7 @@ RUN apt-get update && \
   libgbm-dev=21.2.6-0ubuntu0.1~20.04.2 \
   libnotify-dev=0.7.9-1ubuntu2 \
   libgconf-2-4=3.2.6-6ubuntu1 \
-  libnss3=2:3.49.1-1ubuntu1.7 \
+  libnss3=2:3.49.1-1ubuntu1.8 \
   libxss1=1:1.2.3-1 \
   libasound2=1.2.2-2.1ubuntu2.5 \
   libxtst6=2:1.2.3-1 \
