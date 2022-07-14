@@ -6,9 +6,9 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.8.7",
+    "@mui/material": "^5.9.0",
     "@types/bootstrap": "^5.1.12",
-    "@types/node": "^18.0.3",
+    "@types/node": "^18.0.4",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.24",
@@ -45,7 +45,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
-    "@types/jest": "^28.1.4",
+    "@types/jest": "^28.1.5",
     "body-parser": "^1.20.0",
     "react-scripts": "5.0.1"
   }
