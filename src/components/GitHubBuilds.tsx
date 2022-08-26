@@ -85,6 +85,9 @@ let GitHubBuilds = () => {
                 'https://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&pull=absent'
             )
             const buildInfo: RepoBuildInfo[] = await response.json()
+            buildInfo.sort((a, b) =>
+                a.workflowRunConclusion.localeCompare(b.workflowRunConclusion)
+            )
             setBuildInfos(buildInfo)
         } catch (e: any) {
             console.log(`Failure fetching diff info with diff input: ${e.message}`)
