@@ -38,7 +38,9 @@ let GitHubBuilds = () => {
         <Card>
             <CardHeader
                 title={<Typography variant="h4">Repo Build Status</Typography>}
-                style={{textAlign: 'center'}}/>
+                style={{textAlign: 'center'}}
+                sx={headerDisplay()}
+            />
             <CardContent>
                 {displayBadgeTable()}
             </CardContent>
@@ -49,6 +51,13 @@ let GitHubBuilds = () => {
             </CardActions>
         </Card>
     )
+
+    function headerDisplay() {
+        const headerQueryParam = new URLSearchParams(window.location.search).get("header")
+        const shouldDisplayHeader = !(headerQueryParam === 'false');
+
+        return shouldDisplayHeader ? {} : {display: 'none'};
+    }
 
     function displayBadgeTable() {
         return <List>{displayBadges()}</List>;
