@@ -89,9 +89,10 @@ let GitHubBuilds = () => {
     async function fetchGitHubBuildStatuses() {
         setIsLoading(true)
         console.log('Fetching GitHub build statuses...')
+        let pull = repoBuildInfos.length > 0 ? 'always' : 'absent';
         try {
             const response = await fetch(
-                'https://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&pull=absent'
+                `https://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&pull=${pull}`
             )
             const buildInfo: RepoBuildInfo[] = await response.json()
             buildInfo.sort((a, b) =>
