@@ -32,6 +32,7 @@ let GitHubBuilds = () => {
         fetchGitHubBuildStatuses()
         const interval = setInterval(fetchGitHubBuildStatuses, 1800000);
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
