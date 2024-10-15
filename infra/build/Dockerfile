@@ -6,7 +6,7 @@ RUN apt-get update && \
   openssh-client=1:8.2p1-4ubuntu0.11 \
   awscli=1.18.69-1ubuntu0.20.04.1 \
   jq=1.6-1ubuntu0.20.04.1 \
-  curl=7.68.0-1ubuntu2.23 \
+  curl=7.68.0-1ubuntu2.24 \
   unzip=6.0-25ubuntu1 \
   # Required for Cypress
   libgtk2.0-0=2.24.32-4ubuntu4 \
