@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 readonly IMAGE_NAME='scottg489/dashboard-build:latest'
-readonly ID_RSA=$1
-readonly AWS_CREDENTIALS=$2
+readonly RUN_TASK=$1
+readonly ID_RSA=$2
+readonly AWS_CREDENTIALS=$3
 
 read -r -d '' JSON_BODY <<- EOM
   {
+  "RUN_TASK": "$RUN_TASK",
+  "GIT_BRANCH": "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}",
   "ID_RSA": "$ID_RSA",
   "AWS_CREDENTIALS": "$AWS_CREDENTIALS"
   }

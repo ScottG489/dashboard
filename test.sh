@@ -12,6 +12,7 @@ AWS_CREDENTIALS_CONTENTS_BASE64=$(base64 ~/.aws/credentials | tr -d '\n') ;
 
 read -r -d '\' JSON_BODY <<- EOM
   {
+  "RUN_TASK": "test",
   "ID_RSA": "$ID_RSA_CONTENTS_BASE64",
   "AWS_CREDENTIALS": "$AWS_CREDENTIALS_CONTENTS_BASE64"
   }\\

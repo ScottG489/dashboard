@@ -1,0 +1,12 @@
+name: PR CI
+
+on:
+  pull_request:
+
+jobs:
+  test_application:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and test
+      run: ./build.sh test ${{ secrets.ID_RSA_CONTENTS_BASE64 }} ${{ secrets.AWS_CREDENTIALS_CONTENTS_BASE64 }}
