@@ -26,7 +26,7 @@ module "dashboard_website" {
 
 module "helpers_route53_domain_name_servers" {
   source  = "ScottG489/helpers/aws//modules/route53_domain_name_servers"
-  version = "0.0.4"
+  version = "0.1.12"
   route53_zone_name = module.dashboard_website.r53_zone_name
   route53_zone_name_servers = module.dashboard_website.r53_zone_name_servers
 }
