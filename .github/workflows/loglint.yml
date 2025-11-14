@@ -10,8 +10,8 @@ jobs:
     name: loglint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: scottg489/loglint-action@v0.1.1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: scottg489/loglint-action@efbbb51f42e4b3506678a02c7822a676353d7de2 # v0.1.1
         with:
           repo_token: ${{ github.token }}
         continue-on-error: true
