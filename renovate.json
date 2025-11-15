@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:best-practices"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)Dockerfile($|\\.)"],
+      "matchStrings": [
+        "\\s+(?<depName>[a-z0-9][a-z0-9+.-]+)=(?<currentValue>[^\\s\\\\]+)"
+      ],
+      "datasourceTemplate": "deb",
+      "registryUrlTemplate": "https://archive.ubuntu.com/ubuntu?suite=focal&components=main,universe,restricted,multiverse&binaryArch=amd64"
+    }
   ]
 }
