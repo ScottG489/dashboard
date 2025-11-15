@@ -6,7 +6,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile($|\\.)"],
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile($|\\.)/"
+      ],
       "matchStrings": [
         "\\s+(?<depName>[a-z0-9][a-z0-9+.-]+)=(?<currentValue>[^\\s\\\\]+)"
       ],
