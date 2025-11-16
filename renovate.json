@@ -6,14 +6,22 @@
   "packageRules": [
     {
       "groupName": "node version",
-      "matchDatasources": ["node-version", "node"],
-      "matchPackageNames": ["node", "nodejs"]
+      "matchDatasources": [
+        "node-version",
+        "node-version"
+      ],
+      "matchPackageNames": [
+        "node",
+        "nodejs"
+      ]
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
       "matchStrings": [
         "ARG NODE_VERSION=(?<currentValue>\\S+)"
       ],
@@ -22,7 +30,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
       "matchStrings": [
         "ARG NVM_VERSION=(?<currentValue>\\S+)"
       ],
