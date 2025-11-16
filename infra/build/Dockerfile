@@ -42,13 +42,14 @@ RUN curl -L https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VE
 
 USER ${BUILD_USER}
 
+ARG NVM_VERSION=0.40.3
 ARG NODE_VERSION=20.19.0
 ENV NODE_VERSION=$NODE_VERSION
 ENV NVM_DIR=${HOME}/.nvm
 
 # Install nvm with node and npm
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
 RUN . $NVM_DIR/nvm.sh \
     && nvm alias default $NODE_VERSION \
     && nvm use default

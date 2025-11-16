@@ -22,6 +22,15 @@
     },
     {
       "customType": "regex",
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "matchStrings": [
+        "ARG NVM_VERSION=(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "nvm-sh/nvm",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
       "managerFilePatterns": [
         "/(^|/)Dockerfile($|\\.)/"
       ],
