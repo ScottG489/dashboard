@@ -1,5 +1,8 @@
 FROM ubuntu:24.04@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
 
+ARG BUILD_USER=ubuntu
+ENV HOME=/home/${BUILD_USER}
+
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   ca-certificates=20240203 \
@@ -36,12 +39,11 @@ RUN curl -L https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VE
     -o /usr/local/bin/hadolint \
     && chmod +x /usr/local/bin/hadolint
 
-RUN useradd -m -s /bin/bash build-user
-USER build-user
+USER ${BUILD_USER}
 
 ARG NODE_VERSION=20.19.0
-ENV NODE_VERSION $NODE_VERSION
-ENV NVM_DIR /home/build-user/.nvm
+ENV NODE_VERSION=$NODE_VERSION
+ENV NVM_DIR=${HOME}/.nvm
 
 # Install nvm with node and npm
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -50,16 +52,16 @@ RUN . $NVM_DIR/nvm.sh \
     && nvm alias default $NODE_VERSION \
     && nvm use default
 
-RUN mkdir /home/build-user/.ssh \
-    && mkdir /home/build-user/.docker \
-    && mkdir /home/build-user/.aws \
-    && mkdir /home/build-user/build
+RUN mkdir -p ${HOME}/.ssh \
+    && mkdir -p ${HOME}/.docker \
+    && mkdir -p ${HOME}/.aws \
+    && mkdir -p ${HOME}/build
 
-COPY known_hosts /home/build-user/.ssh/known_hosts
-COPY config /home/build-user/.aws/config
-COPY run.sh /home/build-user/build/run.sh
-COPY run-test.sh /home/build-user/build/run-test.sh
-COPY build_functions.sh /home/build-user/build/build_functions.sh
+COPY known_hosts ${HOME}/.ssh/known_hosts
+COPY config ${HOME}/.aws/config
+COPY run.sh ${HOME}/build/run.sh
+COPY run-test.sh ${HOME}/build/run-test.sh
+COPY build_functions.sh ${HOME}/build/build_functions.sh
 
-WORKDIR /home/build-user/build
+WORKDIR ${HOME}/build
 ENTRYPOINT ["./run.sh"]

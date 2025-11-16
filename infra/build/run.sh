@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-source /home/build-user/build/build_functions.sh
+source $HOME/build/build_functions.sh
 
 set +x
 setup_credentials "$1"
@@ -21,7 +21,7 @@ cd $_PROJECT_NAME
 
 build_application
 
-/home/build-user/build/run-test.sh
+$HOME/build/run-test.sh
 
 [ "$_RUN_TASK" != "deploy" ] && exit 0
 tf_backend_init $_TFSTATE_BUCKET_NAME

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-source /home/build-user/build/build_functions.sh
+source $HOME/build/build_functions.sh
 
 ROOT_DIR="$(git rev-parse --show-toplevel)"
 

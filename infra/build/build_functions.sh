@@ -12,10 +12,10 @@ setup_credentials() {
   readonly ID_RSA_CONTENTS=$(echo -n $1 | jq -r .ID_RSA | base64 --decode)
   readonly AWS_CREDENTIALS_CONTENTS=$(echo -n $1 | jq -r .AWS_CREDENTIALS | base64 --decode)
 
-  printf -- "$ID_RSA_CONTENTS" >/home/build-user/.ssh/id_rsa
-  printf -- "$AWS_CREDENTIALS_CONTENTS" >/home/build-user/.aws/credentials
+  printf -- "$ID_RSA_CONTENTS" > $HOME/.ssh/id_rsa
+  printf -- "$AWS_CREDENTIALS_CONTENTS" > $HOME/.aws/credentials
 
-  chmod 400 /home/build-user/.ssh/id_rsa
+  chmod 400 $HOME/.ssh/id_rsa
 }
 
 build_application() {
