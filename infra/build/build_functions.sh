@@ -109,3 +109,24 @@ ui_deploy() {
 
   aws s3 sync --delete build/ s3://"$BUCKET_NAME"
 }
+
+run_tests() {
+  local ROOT_DIR
+  local RELATIVE_PATH_TO_TF_DIR
+  local WEBSITE_URL
+  local CYPRESS_BASE_URL
+
+  readonly RELATIVE_PATH_TO_TF_DIR=$1
+  readonly ROOT_DIR=$(get_git_root_dir)
+
+  cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
+
+  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.outputs.cf_dist_domain_name.value')
+  [[ -n $WEBSITE_URL ]]
+  readonly CYPRESS_BASE_URL="http://$WEBSITE_URL"
+  export CYPRESS_BASE_URL
+
+  cd "$ROOT_DIR"
+
+  npx cypress run
+}
