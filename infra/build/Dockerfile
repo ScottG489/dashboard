@@ -35,7 +35,7 @@ RUN curl https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_$
   unzip -d /usr/local/bin /tmp/terraform.zip && \
   rm /tmp/terraform.zip
 
-ARG HADOLINT_VERSION=2.10.0
+ARG HADOLINT_VERSION=2.14.0
 RUN curl -L https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VERSION/hadolint-Linux-x86_64 \
     -o /usr/local/bin/hadolint \
     && chmod +x /usr/local/bin/hadolint
