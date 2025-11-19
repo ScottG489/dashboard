@@ -30,7 +30,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-$AWSCLI_VERSION.z
   ./aws/install && \
   rm -rf aws awscliv2.zip
 
-ARG TERRAFORM_VERSION=1.13.5
+ARG TERRAFORM_VERSION=1.14.0
 RUN curl https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/terraform.zip && \
   unzip -d /usr/local/bin /tmp/terraform.zip && \
   rm /tmp/terraform.zip
