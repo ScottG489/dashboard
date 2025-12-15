@@ -78,8 +78,7 @@ let GitHubBuilds = () => {
                                     {repoBuildInfo.repoName}
                                 </Box>
                             </ListItemText>
-                            <img src={repoBuildInfo.badgeUrl + "?" + repoBuildInfo.workflowRunConclusion}
-                                 alt="github repo badge"/>
+                            {repoBuildInfo.conclusion === 'success' ? successSVG() : failureSVG()}
                         </ListItem>
                     </Stack>
                 </Link>
@@ -97,7 +96,7 @@ let GitHubBuilds = () => {
             )
             const buildInfo: RepoBuildInfo[] = await response.json()
             buildInfo.sort((a, b) =>
-                a.workflowRunConclusion.localeCompare(b.workflowRunConclusion)
+                a.conclusion.localeCompare(b.conclusion)
             )
             setBuildInfos(buildInfo)
         } catch (e: any) {
@@ -111,6 +110,38 @@ let GitHubBuilds = () => {
             <Refresh sx={{
                 animation: `${spin} 1s infinite linear`
             }}/>
+        )
+    }
+
+    function successSVG() {
+        return (
+            <svg width="16" height="16" style={{fill: '#3fb950'}}>
+                <path
+                    d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.78-9.72a.751.751 0 0 0-.018-1.042.751.751 0 0 0-1.042-.018L6.75 9.19 5.28 7.72a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042l2 2a.75.75 0 0 0 1.06 0Z"></path>
+            </svg>
+        )
+    }
+    function failureSVG() {
+        return (
+            <svg width="16" height="16" style={{fill: '#f85149'}}>
+                <path
+                    d="M2.343 13.657A8 8 0 1 1 13.658 2.343 8 8 0 0 1 2.343 13.657ZM6.03 4.97a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042L6.94 8 4.97 9.97a.749.749 0 0 0 .326 1.275.749.749 0 0 0 .734-.215L8 9.06l1.97 1.97a.749.749 0 0 0 1.275-.326.749.749 0 0 0-.215-.734L9.06 8l1.97-1.97a.749.749 0 0 0-.326-1.275.749.749 0 0 0-.734.215L8 6.94Z"></path>
+            </svg>
+        )
+    }
+    function inProgressSVG() {
+        return (
+            <div style={{height: '16px', width: '16px'}}>
+                <svg className="spin" width="100%" height="100%" fill="none"
+                     viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="none" stroke="#d29922" stroke-width="2"
+                          d="M3.05 3.05a7 7 0 1 1 9.9 9.9 7 7 0 0 1-9.9-9.9Z" opacity=".5"></path>
+                    <path fill="#d29922" fill-rule="evenodd"
+                          d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" clip-rule="evenodd"></path>
+                    <path fill="#d29922"
+                          d="M14 8a6 6 0 0 0-6-6V0a8 8 0 0 1 8 8h-2Z"></path>
+                </svg>
+            </div>
         )
     }
 };
