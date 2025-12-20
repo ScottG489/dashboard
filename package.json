@@ -56,7 +56,7 @@
     "cypress": "15.8.0",
     "jsdom": "27.3.0",
     "vite": "7.3.0",
-    "vite-tsconfig-paths": "5.1.4",
+    "vite-tsconfig-paths": "6.0.2",
     "vitest": "4.0.16"
   }
 }
