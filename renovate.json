@@ -3,6 +3,7 @@
   "extends": [
     "config:best-practices"
   ],
+  "automergeType": "branch",
   "packageRules": [
     {
       "groupName": "node version",
