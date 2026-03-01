@@ -51,7 +51,7 @@
     "body-parser": "2.2.2",
     "@svgr/core": "8.1.0",
     "@svgr/plugin-jsx": "8.1.0",
-    "@types/node": "24.10.13",
+    "@types/node": "24.10.15",
     "@vitejs/plugin-react": "5.1.4",
     "cypress": "15.11.0",
     "jsdom": "28.1.0",
