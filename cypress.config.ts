@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  defaultCommandTimeout: 30000,
+  defaultCommandTimeout: 60000,
   env: {
     backendUrl: "https://api.conjob.io/job/run?image=scottg489/gh-repo-build-status-job:latest&remove=true",
   },
