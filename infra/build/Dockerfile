@@ -24,7 +24,7 @@ RUN apt-get update && \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-ARG AWSCLI_VERSION=2.34.26
+ARG AWSCLI_VERSION=2.34.27
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-$AWSCLI_VERSION.zip" -o "awscliv2.zip" && \
   unzip awscliv2.zip && \
   ./aws/install && \
