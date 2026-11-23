@@ -3,24 +3,35 @@ FROM ubuntu:26.04@sha256:5e275723f82c67e387ba9e3c24baa0abdcb268917f276a0561c97be
 ARG BUILD_USER=ubuntu
 ENV HOME=/home/${BUILD_USER}
 
-RUN apt-get update && \
+# Ubuntu packages come from this point-in-time snapshot of the archive instead of
+# per-package version pins, which stop building as soon as Ubuntu supersedes a version.
+# Renovate bumps it through the ubuntu-snapshot datasource in ScottG489/renovate-config.
+ARG UBUNTU_SNAPSHOT=20261120T050039Z
+RUN echo "APT::Snapshot \"${UBUNTU_SNAPSHOT}\";" > /etc/apt/apt.conf.d/50snapshot
+
+# snapshot.ubuntu.com is HTTPS-only and the base image has no CA bundle yet, so the
+# bootstrap skips TLS peer verification. apt still checks every index and package
+# against the Ubuntu archive key, same as the image's default http:// sources.
+# hadolint ignore=DL3008
+RUN apt-get -o Acquire::https::Verify-Peer=false update && \
+  apt-get -o Acquire::https::Verify-Peer=false install -y --no-install-recommends ca-certificates && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-  ca-certificates=20260223 \
-  git=1:2.53.0-1ubuntu1 \
-  openssh-client=1:10.2p1-2ubuntu3 \
-  jq=1.8.1-4ubuntu2 \
-  curl=8.18.0-1ubuntu2 \
-  unzip=6.0-29ubuntu1 \
+  ca-certificates \
+  git \
+  openssh-client \
+  jq \
+  curl \
+  unzip \
   # Required for Cypress \
-  libgtk-3-0t64=3.24.52-0ubuntu1 \
-  libgbm-dev=26.0.3-1ubuntu1 \
-  libnotify-dev=0.8.8-1 \
-  libnss3=2:3.120-1ubuntu2 \
-  libxss1=1:1.2.3-1build4 \
-  libasound2t64=1.2.15.3-1ubuntu1 \
-  libxtst6=2:1.2.5-1build1 \
-  xauth=1:1.1.2-1.1build1 \
-  xvfb=2:21.1.22-1ubuntu1 \
+  libgtk-3-0t64 \
+  libgbm-dev \
+  libnotify-dev \
+  libnss3 \
+  libxss1 \
+  libasound2t64 \
+  libxtst6 \
+  xauth \
+  xvfb \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
